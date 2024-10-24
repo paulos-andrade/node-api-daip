@@ -1,0 +1,19 @@
+{
+  "name": "node-api-daip",
+  "version": "1.0.0",
+  "description": "main backend application of daip",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paulos-andrade/node-api-daip.git"
+  },
+  "author": "Paulo Andrade",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/paulos-andrade/node-api-daip/issues"
+  },
+  "homepage": "https://github.com/paulos-andrade/node-api-daip#readme"
+}
