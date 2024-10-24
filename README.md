@@ -1,12 +1,15 @@
 # node-api-daip
-Simple node API, this will be used as the main backend application for the architetures we will be designing for the DAI "devops architetures implementation project".
+Simple Node API Overview
 
+This API will serve as the main backend application for the architectures we will design for the DAI "DevOps Architectures Implementation Project."
 
-Current status :
-- Initial scructure definied ( config,controllers,models,scripts,tests,middlewares)
-- sequelize for create initial database
-- Docker compose for postgree database
-- Post method
-- Get method "hard coded" (must improve)
+Current Status:
 
-Needing tests.
+Initial structure defined (config, controllers, models, scripts, tests, middlewares)
+Sequelize implemented to create the initial database
+Docker Compose set up for PostgreSQL database
+POST method implemented
+GET method is currently "hard-coded" (needs improvement)
+Next Steps:
+
+Implement tests
