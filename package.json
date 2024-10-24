@@ -4,6 +4,7 @@
   "description": "main backend application of daip",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/paulos-andrade/node-api-daip/issues"
   },
-  "homepage": "https://github.com/paulos-andrade/node-api-daip#readme"
+  "homepage": "https://github.com/paulos-andrade/node-api-daip#readme",
+  "dependencies": {
+    "express": "^4.21.1",
+    "pg": "^8.13.0",
+    "sequelize": "^6.37.4"
+  }
 }
