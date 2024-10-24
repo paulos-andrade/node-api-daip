@@ -1,6 +1,6 @@
 const sequelize = require('../config/database');
 
-const syncDatabase = async () => {
+const createDatabase = async () => {
     try {
         await sequelize.sync({ force: true }); // force: true drops tables if they exist, be cautious
         console.log('Database synced successfully.');
@@ -11,4 +11,4 @@ const syncDatabase = async () => {
     }
 };
 
-syncDatabase();
+module.exports = createDatabase;
