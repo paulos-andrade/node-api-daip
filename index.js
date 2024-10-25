@@ -4,6 +4,18 @@ const userRouter = require('./routes/user.routes');
 const sequelize = require('./config/database');
 const createDatabase = require('./scripts/create.database.script');
 
+
+app.use(express.json());
+app.use('/users', userRouter);
+app.use((err, req, res, next) => {
+    console.error(err);
+    res.status(500).json({ error: 'Internal Server Error' });
+});
+
+// Handle other endpoints or invalid requests
+app.use((req, res) => {
+    res.status(404).json({ error: 'Not found' });
+});
 // Create tables than sync database
 const startApp = async () => {
     try {
@@ -21,13 +33,3 @@ const startApp = async () => {
 
 startApp();
 
-app.use('/users', userRouter);
-app.use((err, req, res, next) => {
-    console.error(err);
-    res.status(500).json({ error: 'Internal Server Error' });
-});
-
-// Handle other endpoints or invalid requests
-app.use((req, res) => {
-    res.status(404).json({ error: 'Not found' });
-});
