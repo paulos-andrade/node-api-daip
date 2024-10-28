@@ -6,7 +6,7 @@ function authenticate(req, res, next) {
         return res.status(401).json({ error: 'Unauthorized' });
     }
 
-    // If authentication succeeds, call next() to proceed to the next middleware or route handler
+    /// If authentication succeeds, call next() to proceed to the next middleware or route handler
     next();
 }
 
