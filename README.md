@@ -6,13 +6,18 @@ This API will serve as the main backend application for the architectures we wil
 Current Status:
 
 - Initial structure defined (config, controllers, models, scripts, tests, middlewares);
-- Sequelize implemented to create the initial database (dropping tables when executed);
+- Sequelize implemented to create the initial database;
 - Docker Compose set up for PostgreSQL database;
 - Endpoints for users : 
+  - getAll
+  - createUser
+  - getById
+
+- Implemented tests for :
   - getAll
   - createUser
   - getById
   - 
  Next Steps:
 
-- Implement tests.
+Put and delete endpoints.

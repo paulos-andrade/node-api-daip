@@ -4,7 +4,7 @@ class UserController {
     static getAllUsers = async (req, res) => {
         try {
             const foundUser = await User.findAll();
-            res.status(201).json(foundUser);
+            res.status(200).json(foundUser);
         } catch (error) {
             res.status(500).json({ error: 'Failed to get users' });
         }
@@ -24,13 +24,14 @@ class UserController {
         try {
             const id = req.params.id;
             const foundUser = await User.findByPk(id);
-            res.status(201).json(foundUser);
+            res.status(200).json(foundUser);
         } catch (error) {
             res.status(500).json({ error: 'Failed to get user' });
         }
     }
 
     // Add more methods for handling user-related functionality
+    //Add put method
 }
 
 module.exports = UserController;
