@@ -30,8 +30,41 @@ class UserController {
         }
     }
 
-    // Add more methods for handling user-related functionality
-    //Add put method
+
+    static updateUser = async (req, res) => {
+        try {
+            const id = req.params.id;
+            const { name, email } = req.body;
+
+            const user = await User.findByPk(id);
+            if (!user) {
+                return res.status(404).json({ message: 'User not found' });
+            }
+
+            user.name = name || user.name;
+            user.email = email || user.email;
+
+            await user.save();
+
+            res.status(200).json({ message:'User updated', data:user });
+        } catch (error) {
+            res.status(500).json({ error: 'Failed to update user' });
+        }
+    };
+
+    static deleteUser = async (req, res ) => {
+        try {
+            const id = req.params.id;
+            const deletedUser = await User.destroy({
+                where: {
+                    id: id,
+                },
+            });
+            res.status(200).json(deletedUser);
+        } catch (error) {
+            res.status(500).json({ error: 'Failed to delete user' });
+        }
+    }
 }
 
 module.exports = UserController;
