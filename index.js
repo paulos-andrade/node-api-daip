@@ -19,7 +19,7 @@ app.use((req, res) => {
 // Create tables than sync database
 const startApp = async () => {
     try {
-        await createDatabase();  // Create or ensure the database exists
+        await createDatabase();  // Create or ensure the database exists.
         await sequelize.sync();  // Sync models with the database
         console.log('Database synced');
 
@@ -33,3 +33,4 @@ const startApp = async () => {
 
 startApp();
 
+module.exports = app; //for tests

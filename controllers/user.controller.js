@@ -1,15 +1,15 @@
 const User = require('../models/user.model');
 class UserController {
-    static getAllUsers(req, res) {
-        // Fetch users data from your database or any other source
-        const users = [
-            // Sample user data
-            { name: 'Paulo Andrade', email: 'pa@example.com' },
-            { name: 'Adriani', email: 'adriani@example.com' },
-        ];
-                                //upgrade to select from database
-        res.json({ users });
+
+    static getAllUsers = async (req, res) => {
+        try {
+            const foundUser = await User.findAll();
+            res.status(200).json(foundUser);
+        } catch (error) {
+            res.status(500).json({ error: 'Failed to get users' });
+        }
     }
+
     static createUser = async (req, res) => {
         try {
             const { name, email } = req.body;
@@ -19,7 +19,19 @@ class UserController {
             res.status(500).json({ error: 'Failed to create user' });
         }
     };
+
+    static getUserById = async (req, res) => {
+        try {
+            const id = req.params.id;
+            const foundUser = await User.findByPk(id);
+            res.status(200).json(foundUser);
+        } catch (error) {
+            res.status(500).json({ error: 'Failed to get user' });
+        }
+    }
+
     // Add more methods for handling user-related functionality
+    //Add put method
 }
 
 module.exports = UserController;
