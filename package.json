@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "jest --watchAll"
+    "test": "jest --watchAll",
+    "deploy": "node index.js"
   },
   "repository": {
     "type": "git",
