@@ -2,9 +2,35 @@ pipeline {
     agent any
 
     stages {
-        stage('Hello World') {
+        stage('Checkout Code') {
             steps {
-                echo 'Hello, World!'
+                echo 'Checking out code from Git repository...'
+                checkout([
+                    $class: 'GitSCM',
+                    branches: [[name: '*/develop']],
+                    userRemoteConfigs: [[url: 'https://github.com/paulos-andrade/node-api-daip.git']]
+                ])
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                echo 'Installing dependencies...'
+                sh 'npm install'
+            }
+        }
+
+        stage('Run Tests') {
+            steps {
+                echo 'Running tests...'
+                sh 'npm test'
+            }
+        }
+
+        stage('Build Application') {
+            steps {
+                echo 'Building application...'
+                sh 'npm run build'
             }
         }
     }
