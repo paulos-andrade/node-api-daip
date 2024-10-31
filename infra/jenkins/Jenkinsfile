@@ -4,9 +4,9 @@ pipeline {
     }
 
     environment {
-        DB_HOST = $DB_HOST
-        DB_NAME = $DB_NAME 
-        DB_USER = $DB_USER
+        DB_HOST = "${DB_HOST}"
+        DB_NAME = "${DB_NAME}"
+        DB_USER = "${DB_USER}"
         DB_PASSWORD = credentials('daip-db-password')
     }
     stages {
@@ -30,6 +30,10 @@ pipeline {
 
         stage('Run Tests') {
             steps {
+                echo "Database Host: ${env.DB_HOST}"
+                echo "Database Name: ${env.DB_NAME}"
+                echo "Database User: ${env.DB_USER}"
+
                 echo 'Running tests...'
                 sh 'npm test'
             }
