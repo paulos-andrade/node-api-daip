@@ -4,9 +4,9 @@ pipeline {
     }
 
     environment {
-        DB_HOST = 'dcs-postgres'
-        DB_NAME = 'daipdb' 
-        DB_USER = 'postgres'
+        DB_HOST = $DB_HOST
+        DB_NAME = $DB_NAME 
+        DB_USER = $DB_USER
         DB_PASSWORD = credentials('daip-db-password')
     }
     stages {
