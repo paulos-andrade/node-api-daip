@@ -10,6 +10,10 @@ router.get('/getById/:id', authMiddleware.authenticate, UserController.getUserBy
 
 router.post('/createUser', authMiddleware.authenticate, UserController.createUser);
 
+router.put('/updateUser/:id', authMiddleware.authenticate, UserController.updateUser);
+
+router.delete('/deleteUser/:id', authMiddleware.authenticate, UserController.deleteUser);
+
 // Add more routes for the /users endpoint as needed
 
 module.exports = router;
