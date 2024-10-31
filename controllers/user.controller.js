@@ -24,6 +24,9 @@ class UserController {
         try {
             const id = req.params.id;
             const foundUser = await User.findByPk(id);
+            if (!foundUser) {
+                return res.status(404).json({ message: 'User not found' });
+            }
             res.status(200).json(foundUser);
         } catch (error) {
             res.status(500).json({ error: 'Failed to get user' });
@@ -55,17 +58,19 @@ class UserController {
     static deleteUser = async (req, res ) => {
         try {
             const id = req.params.id;
-            const deletedUser = await User.destroy({
-                where: {
-                    id: id,
-                },
+            const deletedUserCount = await User.destroy({
+                where: { id: id },
             });
-            res.status(200).json(deletedUser);
+            if (deletedUserCount === 0) {
+                return res.status(404).json({ message: 'User not found' });
+            }
+            res.status(200).json('User deleted');
         } catch (error) {
             res.status(500).json({ error: 'Failed to delete user' });
         }
     }
 }
+
 
 //add patch method
 

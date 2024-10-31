@@ -17,40 +17,37 @@ let userId =
 });
 describe("GET /users/getAll", () => {
     it("should return all users", async () => {
-        return request(app)
+        const res = await request(app)
             .get("/users/getAll")
-            .expect('Content-Type', /json/)
-            .expect(200)
-            .then((res) => {
-                expect(res.statusCode).toBe(200);
-            })
+            .expect("Content-Type", /json/)
+            .expect(200);
+        expect(res.statusCode).toBe(200);
     });
 });
 
-describe("GET users/getById/:id", () => {
-    test('should return one user', async () => {
-        return request(app)
+describe("GET /users/getById/:id", () => {
+    it("should return one user", async () => {
+        const res = await request(app)
             .get(`/users/getById/${userId}`)
             .expect(200)
-            .expect('Content-Type', /application\/json/)
+            .expect("Content-Type", /application\/json/);
+        expect(res.body).toHaveProperty("id", userId);
     });
 });
 
 describe("PUT /updateUser/:id", () => {
-    test('should return an updated user', async () => {
+    it("should return an updated user", async () => {
         const updatedTestUserData = {
             name: "New Name",
             email: "newemail@test.com"
         };
-        return request(app)
+        const res = await request(app)
             .put(`/users/updateUser/${userId}`)
             .send(updatedTestUserData)
             .expect(200)
-            .expect('Content-Type', /application\/json/)
-            .then(({ body }) => {
-                expect(body.data).toHaveProperty('id', userId);
-                expect(body.data).toHaveProperty('name', updatedTestUserData.name);
-                expect(body.data).toHaveProperty('email', updatedTestUserData.email);
-            });
+            .expect("Content-Type", /application\/json/);
+        expect(res.body.data).toHaveProperty("id", userId);
+        expect(res.body.data).toHaveProperty("name", updatedTestUserData.name);
+        expect(res.body.data).toHaveProperty("email", updatedTestUserData.email);
     });
 });
