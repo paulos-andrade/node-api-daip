@@ -2,7 +2,13 @@ pipeline {
     agent {
         docker { image 'node:18' } // Pulls Node.js 18 with npm pre-installed
     }
-    
+
+    environment {
+        DB_HOST = 'dcs-postgres'
+        DB_NAME = 'daipdb' 
+        DB_USER = 'postgres'
+        DB_PASSWORD = credentials('daip-db-password')
+    }
     stages {
         stage('Checkout Code') {
             steps {
