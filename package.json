@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node index.js",
     "test": "jest --forceExit",
-    "deploy": "node index.js"
+    "deploy": "node index.js",
+    "build": "npm run clean && npm run transpile && npm run bundle"
   },
   "repository": {
     "type": "git",
