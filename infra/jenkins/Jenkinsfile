@@ -8,6 +8,8 @@ pipeline {
         DB_NAME = "${DB_NAME}"
         DB_USER = "${DB_USER}"
         DB_PASSWORD = credentials('daip-db-password')
+        DOCKERFILE_PATH = "${DOCKER_PATH}"
+        IMAGE_NAME = "${IMAGE_NAME}"
     }
     stages {
         stage('Checkout Code') {
@@ -42,7 +44,15 @@ pipeline {
         stage('Build Application') {
             steps {
                 echo 'Building application...'
-                sh 'npm run build'
+            }
+        }
+
+        stage('Build DockerImage') {
+            steps {
+                echo 'Building DockerImage...'
+                cleanWs()
+                // Build the Docker image, referencing the Dockerfile path
+                sh "docker build -t ${IMAGE_NAME} -f ${DOCKERFILE_PATH} ."
             }
         }
     }
