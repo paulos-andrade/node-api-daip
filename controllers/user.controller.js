@@ -67,4 +67,6 @@ class UserController {
     }
 }
 
+//add patch method
+
 module.exports = UserController;
