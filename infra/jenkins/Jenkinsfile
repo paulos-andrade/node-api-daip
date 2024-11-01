@@ -7,9 +7,6 @@ pipeline {
         DB_PASSWORD = credentials('daip-db-password')
         DOCKERFILE_PATH = "${DOCKER_PATH}"
         IMAGE_NAME = "${IMAGE_NAME}"
-        DOCKER_USERNAME = credentials('docker-username')
-        DOCKER_PASSWORD = credentials('docker-password')
-
     }
     stages {
         stage('Checkout Code') {
