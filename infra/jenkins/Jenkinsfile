@@ -42,7 +42,19 @@ pipeline {
             steps {
                 script {
                     echo 'Building Docker image...'
-                    docker.build("${IMAGE_NAME}", "-f ${DOCKERFILE_PATH} .")
+                    docker.build("${IMAGE_NAME}:latest", "-f ${DOCKERFILE_PATH} .")
+                }
+            }
+        }
+
+        stage('Docker Image Publish') {
+            steps {
+                script {
+                    echo 'Publishing Docker image...'
+                    // Log in to Docker Hub
+                    sh "echo ${DOCKER_PASSWORD} | docker login -u ${DOCKER_USERNAME} --password-stdin"
+                    // Push the image to the registry
+                    sh "docker push ${IMAGE_NAME}:latest"
                 }
             }
         }
