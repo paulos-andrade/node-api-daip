@@ -2,10 +2,10 @@
 FROM node:18-alpine
 
 # Create directory and set ownership to the non-root user
-RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
+RUN mkdir -p /home/node/node-api-daip/node_modules && chown -R node:node /home/node/node-api-daip
 
 # Set working directory
-WORKDIR /home/node/app
+WORKDIR /home/node/node-api-daip
 
 # Copy package files and install dependencies
 COPY package*.json ./
@@ -19,4 +19,4 @@ COPY --chown=node:node . .
 EXPOSE 3000
 
 # Start the application
-CMD [ "npm", "deploy" ]
+CMD [ "npm", "start" ]
