@@ -2,12 +2,7 @@
 FROM node:18-alpine
 
 # Create directory and set ownership to the non-root user
-ARG USER_ID=1000
-ARG GROUP_ID=1000
-RUN addgroup -g $GROUP_ID nodegroup && \
-    adduser -u $USER_ID -G nodegroup -s /bin/sh -D node && \
-    mkdir -p /home/node/node-api-daip/node_modules && \
-    chown -R node:node /home/node/node-api-daip
+RUN mkdir -p /home/node/node-api-daip/node_modules && chown -R node:node /home/node/node-api-daip
 
 # Set working directory
 WORKDIR /home/node/node-api-daip
