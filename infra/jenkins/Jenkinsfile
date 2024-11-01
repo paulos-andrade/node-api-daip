@@ -42,7 +42,6 @@ pipeline {
             steps {
                 script {
                     echo 'Building Docker image...'
-                    cleanWs()
                     docker.build("${IMAGE_NAME}", "-f ${DOCKERFILE_PATH} .")
                 }
             }
