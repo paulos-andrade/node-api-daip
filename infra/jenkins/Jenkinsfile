@@ -42,7 +42,6 @@ pipeline {
             steps {
                 script {
                     echo 'Building Docker image...'
-                    sh 'chown -R $(id -u):$(id -g) .'
                     docker.build("${IMAGE_NAME}", "-f ${DOCKERFILE_PATH} .")
                 }
             }

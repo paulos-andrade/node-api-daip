@@ -9,10 +9,10 @@ WORKDIR /home/node/node-api-daip
 
 # Copy package files and install dependencies
 COPY package*.json ./
-USER node
 RUN npm install
 
 # Copy the rest of the application code
+USER node
 COPY --chown=node:node . .
 
 # Expose the port that the app runs on (update if necessary)
