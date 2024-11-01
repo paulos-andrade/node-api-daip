@@ -56,7 +56,7 @@ pipeline {
                         // Log in to Docker Hub
                         sh "echo \$DOCKER_PASSWORD | docker login -u \$DOCKER_USERNAME --password-stdin"
                         // Push the image to the registry
-                        sh "docker push ${DOCKER_IMAGE_NAME}"
+                        sh "docker push ${IMAGE_NAME}:latest"
                     }
                 }
             }
