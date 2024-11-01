@@ -7,6 +7,9 @@ pipeline {
         DB_PASSWORD = credentials('daip-db-password')
         DOCKERFILE_PATH = "${DOCKER_PATH}"
         IMAGE_NAME = "${IMAGE_NAME}"
+        DOCKER_USERNAME = credentials('docker-username')
+        DOCKER_PASSWORD = credentials('docker-password')
+
     }
     stages {
         stage('Checkout Code') {
@@ -42,7 +45,8 @@ pipeline {
             steps {
                 script {
                     echo 'Building Docker image...'
-                    docker.build("${IMAGE_NAME}:latest", "-f ${DOCKERFILE_PATH} .")
+                    def image = docker.build("${IMAGE_NAME}:latest", "-f ${DOCKERFILE_PATH} .")
+                    echo "Built image ID: ${image.id}"
                 }
             }
         }
@@ -54,7 +58,7 @@ pipeline {
                     // Log in to Docker Hub
                     sh "echo ${DOCKER_PASSWORD} | docker login -u ${DOCKER_USERNAME} --password-stdin"
                     // Push the image to the registry
-                    sh "docker push ${IMAGE_NAME}:latest"
+                    sh "docker push ${DOCKER_IMAGE_NAME}"
                 }
             }
         }
