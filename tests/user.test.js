@@ -51,3 +51,12 @@ describe("PUT /updateUser/:id", () => {
         expect(res.body.data).toHaveProperty("email", updatedTestUserData.email);
     });
 });
+
+describe("DELETE /users/deleteUser/:id", () => {
+    it("should delete one user", async () => {
+        const res = await request(app)
+            .del(`/users/deleteUser/${userId}`)
+            .expect(200)
+            .expect("Content-Type", /application\/json/);
+    });
+});
